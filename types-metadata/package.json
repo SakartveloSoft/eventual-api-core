@@ -1,0 +1,32 @@
+{
+  "name": "@sakartvelosoft/types-metadata",
+  "version": "0.0.1",
+  "description": "Core for API based on events and operations",
+  "main": "index.js",
+  "scripts": {
+    "test": "ts-mocha tests/**/*.spec.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SakartveloSoft/eventual-api-core.git",
+    "directory": "types-metadata"
+  },
+  "author": {
+    "email": "kote.isaev@sakartvelosoft.com",
+    "name": "Sakartvelosoft LTD",
+    "url": "https://www.sakartvelosoft.com"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SakartveloSoft/eventual-api-core/issues"
+  },
+  "publishConfig": {
+
+  },
+  "homepage": "https://github.com/SakartveloSoft/eventual-api-core#readme",
+  "devDependencies": {
+    "mocha": "^10.2.0",
+    "ts-mocha": "^10.0.0",
+    "typescript": "^5.0.4"
+  }
+}

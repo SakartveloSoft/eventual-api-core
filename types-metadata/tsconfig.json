@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "target": "ES2022",
+    "sourceMap": true
+  },
+    "include": ["./src", "./tests"],
+    "compileOnSave": true,
+    "exclude": [
+    "node_modules"
+  ]
+}
