@@ -12,7 +12,9 @@ export interface ITypeConfigurator<T=any> {
     withPropertyExtensions<TProp, TResult>(prop:keyof T, extUsage:(manager:IMetadataExtensionsManager) => TResult|void):ITypeConfigurator<T>;
 
     useExtensions<TResult>(extUsage:(manager:IMetadataExtensionsManager) => TResult):TResult;
-    usePropertyExtensions<TResult>(extUsage:(manager:IMetadataExtensionsManager) => TResult):TResult;
+    usePropertyExtensions<TResult>(prop:keyof T, extUsage:(manager:IMetadataExtensionsManager) => TResult):TResult;
+
+    withPropertyGenerator(prop:keyof T, generator:(vales?:T) => any):ITypeConfigurator<T>;
 
 
 }
@@ -29,8 +31,8 @@ export enum MetadataExtensionAction {
     Add = "add",
     Update = "update"
 }
-export interface IActiveExtension {
-    configure?( action: MetadataExtensionAction|string, type:IType<T=any>, prop?:keyof T)
+export interface IActiveExtension<T=any> {
+    configure?( action: MetadataExtensionAction|string, type:IType<T>, prop?:keyof T): void;
 }
 
 export interface ITypeMetadata<T=any> {
@@ -53,6 +55,10 @@ export interface IPropertyMetadata<T> {
 
     readonly extensions:IMetadataExtensionsManager;
 
+    getDefaultValue(forInstance:T):any;
+    withDefaultValue(value:any):IPropertyMetadata<T>;
+    withGenerator<TProp>(func:(values?:T) => TProp):IPropertyMetadata<T>;
+
 }
 export interface ITypesRegistry {
     getTypeAlias<T>(type:IType<T>):string;
@@ -63,4 +69,7 @@ export interface ITypesRegistry {
     resolveType(typeAlias:string):ITypeMetadata;
 
     getTypeExtension<T, TExtension>(type:IType<T>, extType:IType<TExtension>):TExtension;
+
+    create<T>(ctr:IType<T>, values?:Partial<T>):T;
+    produceEmpty<T=any>(typeAlias:string, values?:Partial<T>):T;
 }

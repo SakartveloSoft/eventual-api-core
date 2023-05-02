@@ -9,6 +9,9 @@ export {
     ITypesRegistry,
 } from "./common-interfaces";
 
+export { getConstructorName } from "./utils";
+export { DefaultValue} from "./default-value-extension";
+export { DefaultValueGenerator } from "./default-value-generator";
 export function createTypesRegistry():ITypesRegistry {
     return new TypesRegistry();
 }

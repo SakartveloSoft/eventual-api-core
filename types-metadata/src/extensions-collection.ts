@@ -4,8 +4,11 @@ import {getConstructorName} from "./utils";
 export class ExtensionsCollection<T> implements IMetadataExtensionsManager {
     private _extensions = new Map<string, any>();
 
+    public readonly typeName: string;
+    public readonly propName: string;
     constructor(private readonly type:IType<T>, private readonly prop:keyof T) {
-
+        this.typeName = getConstructorName(type);
+        this.propName = String(prop);
     }
 
     _reconfigure(ext:IActiveExtension, action:MetadataExtensionAction) {
@@ -40,11 +43,16 @@ export class ExtensionsCollection<T> implements IMetadataExtensionsManager {
     }
 
     getExtension<TExtension>(extType: IType<TExtension>, required?: boolean): TExtension {
-        return undefined;
+        let extensionId = getConstructorName(extType);
+        let extObj = this._extensions.get(extensionId);
+        if (extObj === undefined && required) {
+            throw new Error(`Unknown extension on ${this.typeName}${this.prop ? "::" : ""}${this.prop ? this.propName : ""}`);
+        }
+        return extObj;
     }
 
     hasExtension<TExtension>(extType: IType<TExtension>): boolean {
-        return false;
+        return this._extensions.has(getConstructorName(extType));
     }
 
 }

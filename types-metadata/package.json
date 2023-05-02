@@ -2,9 +2,12 @@
   "name": "@sakartvelosoft/types-metadata",
   "version": "0.0.1",
   "description": "Core for API based on events and operations",
-  "main": "index.js",
+  "main": "dist/srs/index.js",
+  "types": "dist/src/index.d.ts",
   "scripts": {
-    "test": "ts-mocha tests/**/*.spec.ts"
+    "test": "ts-mocha tests/**/*.spec.ts",
+    "build": "tsc",
+    "prepublish": "tsc"
   },
   "repository": {
     "type": "git",
@@ -20,11 +23,13 @@
   "bugs": {
     "url": "https://github.com/SakartveloSoft/eventual-api-core/issues"
   },
-  "publishConfig": {
-
-  },
+  "publishConfig": {},
   "homepage": "https://github.com/SakartveloSoft/eventual-api-core#readme",
   "devDependencies": {
+    "@types/chai": "^4.3.5",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^18.16.3",
+    "chai": "^4.3.7",
     "mocha": "^10.2.0",
     "ts-mocha": "^10.0.0",
     "typescript": "^5.0.4"
