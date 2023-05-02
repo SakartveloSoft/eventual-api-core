@@ -2,7 +2,7 @@
   "name": "@sakartvelosoft/types-metadata",
   "version": "0.0.2",
   "description": "Core for API based on events and operations",
-  "main": "dist/srs/index.js",
+  "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "scripts": {
     "test": "ts-mocha tests/**/*.spec.ts",
@@ -14,7 +14,6 @@
     "url": "git+https://github.com/SakartveloSoft/eventual-api-core.git",
     "directory": "types-metadata"
   },
-  "readme": "types-metadata/README.md",
   "author": {
     "email": "kote.isaev@sakartvelosoft.com",
     "name": "Sakartvelosoft LTD",

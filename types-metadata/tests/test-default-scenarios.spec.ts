@@ -42,7 +42,7 @@ describe('test default scenarios for types metadata', () => {
         let registry = createTypesRegistry();
         registry.configureType(TestRecord, api => api.withPropertyGenerator('timestamp', () => new Date())
             .withPropertyGenerator('id', () => randomBytes(32).toString('base64url')));
-        let rec = registry.create<TestRecord>(TestRecord, {
+        let rec = registry.create(TestRecord, {
             text: 'Testing'
         });
         expect(rec).instanceof(TestRecord);
