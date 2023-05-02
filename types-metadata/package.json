@@ -1,6 +1,6 @@
 {
   "name": "@sakartvelosoft/types-metadata",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Core for API based on events and operations",
   "main": "dist/srs/index.js",
   "types": "dist/src/index.d.ts",
