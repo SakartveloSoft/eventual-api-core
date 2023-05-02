@@ -23,7 +23,9 @@
   "bugs": {
     "url": "https://github.com/SakartveloSoft/eventual-api-core/issues"
   },
-  "publishConfig": {},
+  "publishConfig": {
+    "access": "public"
+  },
   "homepage": "https://github.com/SakartveloSoft/eventual-api-core#readme",
   "devDependencies": {
     "@types/chai": "^4.3.5",
