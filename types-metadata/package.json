@@ -14,6 +14,7 @@
     "url": "git+https://github.com/SakartveloSoft/eventual-api-core.git",
     "directory": "types-metadata"
   },
+  "readme": "types-metadata/README.md",
   "author": {
     "email": "kote.isaev@sakartvelosoft.com",
     "name": "Sakartvelosoft LTD",

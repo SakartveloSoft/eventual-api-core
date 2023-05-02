@@ -25,7 +25,7 @@ describe('test default scenarios for types metadata', () => {
         }
 
         let registry = createTypesRegistry();
-        registry.configureType<TestClass2>(TestClass2, api => api.withDefaultValues({
+        registry.configureType(TestClass2, api => api.withDefaultValues({
             text: 'DEFAULT TEXT'
         }));
         let instance = registry.forType(TestClass2).createEmpty();
@@ -40,7 +40,7 @@ describe('test default scenarios for types metadata', () => {
         }
 
         let registry = createTypesRegistry();
-        registry.configureType<TestRecord>(TestRecord, api => api.withPropertyGenerator('timestamp', () => new Date())
+        registry.configureType(TestRecord, api => api.withPropertyGenerator('timestamp', () => new Date())
             .withPropertyGenerator('id', () => randomBytes(32).toString('base64url')));
         let rec = registry.create<TestRecord>(TestRecord, {
             text: 'Testing'

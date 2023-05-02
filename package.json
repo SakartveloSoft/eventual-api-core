@@ -1,0 +1,7 @@
+{
+  "name": "eventual-api-core-development",
+  "version": "0.0.1",
+  "devDependencies": {
+    "typescript": "^5.0.4"
+  }
+}

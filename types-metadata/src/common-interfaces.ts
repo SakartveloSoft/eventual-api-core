@@ -1,7 +1,7 @@
 
 export interface IType<T> {
     new():T;
-    name: string;
+    //name: string;
 }
 
 export interface ITypeConfigurator<T=any> {
@@ -63,7 +63,7 @@ export interface IPropertyMetadata<T> {
 export interface ITypesRegistry {
     getTypeAlias<T>(type:IType<T>):string;
     bindTypeAlias<T>(type:IType<T>, alias:string):void;
-    configureType<T>(type:IType<T>, setup:(configurator:ITypeConfigurator<T>) => (ITypeConfigurator<T>|void));
+    configureType<T>(type: IType<T>, setup:(configurator:ITypeConfigurator<T>) => (ITypeConfigurator<T>|void));
     forType<T>(type:IType<T>):ITypeMetadata<T>;
     forProperty<T>(typeRef:IType<T>, prop:keyof T):IPropertyMetadata<T>;
     resolveType(typeAlias:string):ITypeMetadata;
