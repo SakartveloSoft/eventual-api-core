@@ -1,7 +1,12 @@
 {
   "name": "@sakartvelosoft/types-metadata",
-  "version": "0.0.2",
-  "description": "Core for API based on events and operations",
+  "version": "0.0.3",
+  "description": "Generic library to manage types metadata without decorators",
+  "keywords": [
+    "types",
+    "metadata",
+    "experimental"
+  ],
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "scripts": {
