@@ -38,14 +38,14 @@ export class EventsFactory implements IEventsFactory {
         });
     }
 
-    registerEventsType<T extends object=object>(eventType: IType<T>, typeAlias?: string) {
+    registerEventsType<T>(eventType: IType<T>, typeAlias?: string) {
         this.typesRegistry.configureType(eventType, (api) => {
             api.bindAlias(typeAlias || getConstructorName(eventType));
         });
     }
 
-    createEvent<T extends object=object>(eventType: IType<T>, data: Partial<T>, options?: EventCreationOptions): EventDetails<T> {
-        const fullData = this.typesRegistry.create(eventType, data);
+    createEvent<T>(eventType: IType<T>, data: Partial<T>, options?: EventCreationOptions): EventDetails<T> {
+        const fullData = this.typesRegistry.create(eventType, data as T);
         const finalTypeName = this.typesRegistry.forType(eventType).alias || getConstructorName(eventType);
         const finalSource = options.source || this.options?.source || null;
         let fullTargets = options?.targets || this.options?.targets || null;
@@ -62,7 +62,7 @@ export class EventsFactory implements IEventsFactory {
         }) as unknown as EventDetails<T>;
     }
 
-    rebuildEvent<T extends object=object>(eventMetadata: EventMetadata, data: T): EventDetails<T> {
+    rebuildEvent<T>(eventMetadata: EventMetadata, data: T): EventDetails<T> {
         return Object.assign(new EventRecord<T>(), {
             type: eventMetadata.type,
             id: eventMetadata.type,
