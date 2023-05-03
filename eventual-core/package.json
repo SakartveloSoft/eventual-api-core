@@ -6,8 +6,8 @@
   "types": "dist/src/index.d.ts",
   "scripts": {
     "test": "ts-mocha tests/**/*.spec.ts",
-    "build": "tsc",
-    "prepublish": "tsc"
+    "build": "npx tsc",
+    "prepublish": "npx tsc"
   },
   "repository": {
     "type": "git",
@@ -31,13 +31,16 @@
     "@types/chai": "^4.3.5",
     "@types/mocha": "^10.0.1",
     "@types/node": "^18.16.3",
+    "@typescript-eslint/eslint-plugin": "^5.59.2",
+    "@typescript-eslint/parser": "^5.59.2",
     "chai": "^4.3.7",
+    "eslint": "^8.39.0",
     "mocha": "^10.2.0",
     "ts-mocha": "^10.0.0",
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "@sakartvelosoft/id-generation": "^0.0.2",
-    "@sakartvelosoft/types-metadata": "^0.0.3"
+    "@sakartvelosoft/id-generation": "^0.0.3",
+    "@sakartvelosoft/types-metadata": "^0.0.8"
   }
 }

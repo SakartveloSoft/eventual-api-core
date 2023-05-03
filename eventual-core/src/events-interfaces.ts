@@ -1,4 +1,5 @@
-import {IType} from "@sakartvelosoft/types-metadata/dist/src/common-interfaces";
+import {IType} from "@sakartvelosoft/types-metadata";
+import {CallableIdFactory} from "@sakartvelosoft/id-generation";
 
 
 
@@ -15,7 +16,7 @@ export interface EventMetadata {
 
 }
 
-export interface EventDetails<T> extends EventMetadata {
+export interface EventDetails<T extends object=object> extends EventMetadata {
     data: T;
 }
 
@@ -29,14 +30,14 @@ export interface EventCreationOptions {
 }
 
 export interface IEventsFactoryOptions {
-    eventIdFactory?:EventIdFactory;
+    eventIdFactory?:CallableIdFactory;
     source?:string;
     targets?:string[];
     targetsCleanup?:(eventType: string, source:string, targets:string[]) => string[];
 }
 
 export interface IEventsFactory {
-    registerEventsType(eventType:IType<T>, typeAlias?:string):void;
-    createEvent<T=any>(eventType:IType<T>, data:Partial<T>, options?:EventCreationOptions):EventDetails<T>;
-    rebuildEvent<T=any>(eventMetadata:EventMetadata, data:T):EventDetails<T>;
+    registerEventsType<T extends object=object>(eventType:IType<T>, typeAlias?:string):void;
+    createEvent<T extends object=object>(eventType:IType<T>, data:Partial<T>, options?:EventCreationOptions):EventDetails<T>;
+    rebuildEvent<T extends object=object>(eventMetadata:EventMetadata, data:T):EventDetails<T>;
 }
