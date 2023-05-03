@@ -1,6 +1,6 @@
 {
   "name": "@sakartvelosoft/types-metadata",
-  "version": "0.0.5",
+  "version": "0.0.8",
   "description": "Generic library to manage types metadata without decorators",
   "keywords": [
     "types",

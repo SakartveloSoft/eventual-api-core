@@ -1,8 +1,12 @@
 {
   "name": "@sakartvelosoft/id-generation",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "package to generate either incrementing or random alphanumeric ids ",
-  "keywords": ["id generation", "generator", "object id"],
+  "keywords": [
+    "id generation",
+    "generator",
+    "object id"
+  ],
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "scripts": {
