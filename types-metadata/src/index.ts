@@ -3,6 +3,9 @@ import {TypesRegistry} from "./types-registry";
 
 export {
     IPropertyMetadata,
+    IType,
+    IActiveExtension,
+    MetadataExtensionAction,
     IMetadataExtensionsManager,
     ITypeConfigurator,
     ITypeMetadata,
