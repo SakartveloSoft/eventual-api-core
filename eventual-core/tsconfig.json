@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "target": "ES2021",
+    "lib": ["ES2021"],
+    "sourceMap": true,
+    "outDir": "./dist",
+    "declaration": true
+  },
+  "include": ["./src/**/*.ts", "./tests/**/*.ts"],
+    "compileOnSave": true,
+    "exclude": [
+    "node_modules"
+  ]
+}
