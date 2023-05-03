@@ -1,6 +1,6 @@
 {
   "name": "@sakartvelosoft/types-metadata",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Generic library to manage types metadata without decorators",
   "keywords": [
     "types",
@@ -24,7 +24,7 @@
     "name": "Sakartvelosoft LTD",
     "url": "https://www.sakartvelosoft.com"
   },
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/SakartveloSoft/eventual-api-core/issues"
   },
