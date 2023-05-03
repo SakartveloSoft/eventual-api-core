@@ -40,7 +40,7 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "@sakartvelosoft/id-generation": "^0.0.3",
+    "@sakartvelosoft/id-generation": "^0.0.4",
     "@sakartvelosoft/types-metadata": "^0.0.8"
   }
 }
