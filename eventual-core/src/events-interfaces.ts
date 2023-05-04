@@ -36,8 +36,13 @@ export interface IEventsFactoryOptions {
     targetsCleanup?:(eventType: string, source:string, targets:string[]) => string[];
 }
 
+export interface IEventFactoryEntry<T> {
+    create(data:Partial<T>, options?:EventCreationOptions):EventDetails<T>;
+    rebuild<T>(metadata:EventMetadata, data:T):EventDetails<T>;
+}
 export interface IEventsFactory {
     registerEventsType<T>(eventType:IType<T>, typeAlias?:string):void;
+    forEvent<T>(eventType:IType<T>):IEventFactoryEntry<T>;
     createEvent<T>(eventType:IType<T>, data:Partial<T>, options?:EventCreationOptions):EventDetails<T>;
     rebuildEvent<T>(eventMetadata:EventMetadata, data:T):EventDetails<T>;
 }

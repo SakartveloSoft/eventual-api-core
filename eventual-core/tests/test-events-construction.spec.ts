@@ -10,8 +10,7 @@ describe('Test events construction and rebuilding', () => {
         const eventFactory = createEventsFactory(createTypesRegistry(), { source: 'test' });
         eventFactory.registerEventsType(TestEvent, 'test-event');
         const newEvent = eventFactory.createEvent(TestEvent, {
-
-
-        })
+            message: "Test"
+        });
     })
 })
