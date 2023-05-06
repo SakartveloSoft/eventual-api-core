@@ -41,8 +41,8 @@ export interface IEventFactoryEntry<T> {
     rebuild<T>(metadata:EventMetadata, data:T):EventDetails<T>;
 }
 export interface IEventsFactory {
-    registerEventsType<T>(eventType:IType<T>, typeAlias?:string):void;
-    forEvent<T>(eventType:IType<T>):IEventFactoryEntry<T>;
-    createEvent<T>(eventType:IType<T>, data:Partial<T>, options?:EventCreationOptions):EventDetails<T>;
+    registerEventsType<T>(eventType:{ new():T }, typeAlias?:string):void;
+    forEvent<T>(eventType:{ new():T }):IEventFactoryEntry<T>;
+    createEvent<T>(eventType:{ new():T }, data:Partial<T>, options?:EventCreationOptions):EventDetails<T>;
     rebuildEvent<T>(eventMetadata:EventMetadata, data:T):EventDetails<T>;
 }

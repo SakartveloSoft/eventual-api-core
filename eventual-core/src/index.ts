@@ -1,6 +1,6 @@
 import {IEventsFactory, IEventsFactoryOptions} from "./events-interfaces";
 import {EventsFactory} from "./events-factory";
-import {ITypesRegistry} from "@sakartvelosoft/types-metadata";
+import {IType, ITypesRegistry} from "@sakartvelosoft/types-metadata";
 
 
 export {
@@ -15,4 +15,8 @@ export {
 
 export function createEventsFactory(typesRegistry:ITypesRegistry, eventFactorOptions:IEventsFactoryOptions):IEventsFactory {
     return new EventsFactory(typesRegistry, eventFactorOptions);
+}
+
+export function typeRef<T>(impl:{new():T}):{new():T} {
+    return impl;
 }

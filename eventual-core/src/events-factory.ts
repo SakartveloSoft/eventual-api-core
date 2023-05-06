@@ -1,7 +1,7 @@
 import {
     EventCreationOptions,
     EventDetails,
-    EventMetadata,
+    EventMetadata, IEventFactoryEntry,
     IEventsFactory,
     IEventsFactoryOptions
 } from "./events-interfaces";
@@ -17,6 +17,19 @@ import {
 
 function generateTimestamp():Date {
     return new Date();
+}
+
+class EventTypeEntry<T> implements IEventFactoryEntry<T> {
+    constructor(private eventType:IType<T>, private readonly owner:EventsFactory) {
+    }
+
+    rebuild<T>(metadata: EventMetadata, data: T): EventDetails<T> {
+        return this.owner.rebuildEvent(metadata, data);
+    }
+
+    create(data: Partial<T>, options?: EventCreationOptions): EventDetails<T> {
+        return this.owner.createEvent(this.eventType, data, options);
+    }
 }
 
 export class EventsFactory implements IEventsFactory {
@@ -73,5 +86,9 @@ export class EventsFactory implements IEventsFactory {
             preferredChannel: eventMetadata.preferredChannel || null,
             data: this.typesRegistry.resolveType(eventMetadata.type).rebuild(data)
         } as Partial<EventRecord<T>>) as EventDetails<T>;
+    }
+
+    forEvent<T>(eventType: IType<T>): IEventFactoryEntry<T> {
+        return new EventTypeEntry(eventType, this);
     }
 }
