@@ -19,11 +19,11 @@ function generateTimestamp():Date {
     return new Date();
 }
 
-class EventTypeEntry<T> implements IEventFactoryEntry<T> {
+class EventTypeEntry<T extends object> implements IEventFactoryEntry<T> {
     constructor(private eventType:IType<T>, private readonly owner:EventsFactory) {
     }
 
-    rebuild<T>(metadata: EventMetadata, data: T): EventDetails<T> {
+    rebuild(metadata: EventMetadata, data: T): EventDetails<T> {
         return this.owner.rebuildEvent(metadata, data);
     }
 
@@ -51,16 +51,16 @@ export class EventsFactory implements IEventsFactory {
         });
     }
 
-    registerEventsType<T>(eventType: IType<T>, typeAlias?: string) {
+    registerEventsType<T extends object>(eventType: IType<T>, typeAlias?: string) {
         this.typesRegistry.configureType(eventType, (api) => {
             api.bindAlias(typeAlias || getConstructorName(eventType));
         });
     }
 
-    createEvent<T>(eventType: IType<T>, data: Partial<T>, options?: EventCreationOptions): EventDetails<T> {
+    createEvent<T extends object>(eventType: IType<T>, data: Partial<T>, options?: EventCreationOptions): EventDetails<T> {
         const fullData = this.typesRegistry.create(eventType, data as T);
         const finalTypeName = this.typesRegistry.forType(eventType).alias || getConstructorName(eventType);
-        const finalSource = options.source || this.options?.source || null;
+        const finalSource = options?.source || this.options?.source || null;
         let fullTargets = options?.targets || this.options?.targets || null;
         if (this.options?.targetsCleanup) {
             fullTargets = this.options.targetsCleanup(finalTypeName, finalSource, fullTargets);
@@ -75,7 +75,7 @@ export class EventsFactory implements IEventsFactory {
         }) as unknown as EventDetails<T>;
     }
 
-    rebuildEvent<T>(eventMetadata: EventMetadata, data: T): EventDetails<T> {
+    rebuildEvent<T extends object=object>(eventMetadata: EventMetadata, data: T): EventDetails<T> {
         return Object.assign(new EventRecord<T>(), {
             type: eventMetadata.type,
             id: eventMetadata.type,
@@ -88,7 +88,7 @@ export class EventsFactory implements IEventsFactory {
         } as Partial<EventRecord<T>>) as EventDetails<T>;
     }
 
-    forEvent<T>(eventType: IType<T>): IEventFactoryEntry<T> {
+    forEvent<T extends object>(eventType: IType<T>): IEventFactoryEntry<T> {
         return new EventTypeEntry(eventType, this);
     }
 }

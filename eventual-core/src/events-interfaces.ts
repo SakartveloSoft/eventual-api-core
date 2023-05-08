@@ -16,7 +16,7 @@ export interface EventMetadata {
 
 }
 
-export interface EventDetails<T> extends EventMetadata {
+export interface EventDetails<T extends object> extends EventMetadata {
     data: T;
 }
 
@@ -36,13 +36,13 @@ export interface IEventsFactoryOptions {
     targetsCleanup?:(eventType: string, source:string, targets:string[]) => string[];
 }
 
-export interface IEventFactoryEntry<T> {
+export interface IEventFactoryEntry<T extends object> {
     create(data:Partial<T>, options?:EventCreationOptions):EventDetails<T>;
-    rebuild<T>(metadata:EventMetadata, data:T):EventDetails<T>;
+    rebuild(metadata:EventMetadata, data:T):EventDetails<T>;
 }
 export interface IEventsFactory {
-    registerEventsType<T>(eventType:{ new():T }, typeAlias?:string):void;
-    forEvent<T>(eventType:{ new():T }):IEventFactoryEntry<T>;
-    createEvent<T>(eventType:{ new():T }, data:Partial<T>, options?:EventCreationOptions):EventDetails<T>;
-    rebuildEvent<T>(eventMetadata:EventMetadata, data:T):EventDetails<T>;
+    registerEventsType<T extends object>(eventType:IType<T>, typeAlias?:string):void;
+    forEvent<T extends object>(eventType:IType<T>):IEventFactoryEntry<T>;
+    createEvent<T extends object>(eventType:IType<T>, data:Partial<T>, options?:EventCreationOptions):EventDetails<T>;
+    rebuildEvent<T extends object=object>(eventMetadata:EventMetadata, data:T):EventDetails<T>;
 }

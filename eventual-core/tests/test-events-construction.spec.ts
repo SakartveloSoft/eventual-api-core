@@ -13,6 +13,22 @@ describe('Test events construction and rebuilding', () => {
         const newEvent = eventFactory.createEvent(TestEvent, {
             message: "Test"
         });
-        expect(newEvent).instanceof(TestEvent);
+        expect(newEvent.type).eq('test-event');
+        expect(newEvent.data).instanceof(TestEvent);
+        expect(newEvent.data.message).eq('Test');
+    });
+    it('Construct event via entry', () => {
+        const eventFactory = createEventsFactory(createTypesRegistry(), { source: 'test' });
+        eventFactory.registerEventsType(TestEvent, 'test-event');
+        const entry = eventFactory.forEvent(TestEvent);
+        const newEvent = entry.create( {
+            message: "Test"
+        }, {
+            source: 'test'
+        });
+        expect(newEvent.type).eq('test-event');
+        expect(newEvent.data).instanceof(TestEvent);
+        expect(newEvent.source).eq('test');
+        expect(newEvent.data.message).eq('Test');
     })
-})
+});
